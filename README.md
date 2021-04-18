@@ -114,7 +114,7 @@ class MyClass {
     private func setupHandlers() {
         observables = UserDefaults.standard.observe(
             keys: [.AppleMomentumScrollSupported, .usesDetailedToolTips], 
-            callback: applyDefaults(_:_:_:)
+            callback: { [weak self] in self?.applyDefaults($0, $1, $2) /* You must use weak self here! */ }
         )
     }
 
